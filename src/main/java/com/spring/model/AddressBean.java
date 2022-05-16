@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "address")
 @Component
-public class AddressBean implements Serializable {
+public class AddressBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -53,7 +53,7 @@ public class AddressBean implements Serializable {
 		this.city = city;
 		this.state = state;
 	}
-
+	
 	public int getAddressId() {
 		return AddressId;
 	}
@@ -102,12 +102,13 @@ public class AddressBean implements Serializable {
 		this.state = state;
 	}
 
-	public UserBean getUser() {
-		return user;
+	public UserBean getUser() throws CloneNotSupportedException {
+		return (UserBean) user.clone();
 	}
 
-	public void setUser(UserBean User) {
-		user = User;
+	public void setUser(UserBean User) throws CloneNotSupportedException {
+		this.user = (UserBean) User.clone();
 	}
+	  
 
 }

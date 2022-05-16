@@ -195,7 +195,7 @@ public class DemoController {
 
 	@RequestMapping(path = "/UpdateUserDetailsController", method = RequestMethod.POST)
 	public String updateUserDetailsController(@ModelAttribute UserBean user, Model model, HttpSession session,
-			HttpServletRequest request) {
+			HttpServletRequest request) throws CloneNotSupportedException {
 		session = request.getSession(false);
 		userImpl.updateUser(user);
 		System.out.println("inside second update address :" + user);

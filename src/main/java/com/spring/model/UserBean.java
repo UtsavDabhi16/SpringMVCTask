@@ -1,6 +1,7 @@
 package com.spring.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,10 +19,10 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "users")
 @Component
-public class UserBean implements Serializable {
+public class UserBean implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Expose
@@ -46,8 +47,8 @@ public class UserBean implements Serializable {
 	private String CPassword;
 	@Expose
 	private String NewPassword;
-	
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<AddressBean> address;
 
 	@OneToMany(cascade = CascadeType.ALL)
@@ -73,7 +74,12 @@ public class UserBean implements Serializable {
 		Password = password;
 		CPassword = cPassword;
 		NewPassword = newPassword;
-		this.address = address;
+		this.address = new ArrayList<AddressBean>(address);
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return (UserBean)super.clone();
 	}
 
 	@Override
@@ -173,19 +179,19 @@ public class UserBean implements Serializable {
 	}
 
 	public List<AddressBean> getAddress() {
-		return this.address;
+		return new ArrayList<AddressBean>(address);
 	}
 
 	public void setAddress(List<AddressBean> address) {
-		this.address = address;
+		this.address = new ArrayList<AddressBean>(address);
 	}
-	
+
 	public List<AssignBean> getAssign() {
-		return this.assign;
+		return new ArrayList<AssignBean>(assign);
 	}
 
 	public void setAssign(List<AssignBean> assign) {
-		this.assign = assign;
+		this.assign = new ArrayList<AssignBean>(assign);
 	}
 
 }

@@ -8,10 +8,12 @@ com\spring\serviceImpl\UserImpl.class
 com\spring\dao\AddressDao.class
 com\spring\model\AssignBean.class
 com\spring\dao\UserDao.class
+com\spring\filter\UserFilter.class
 com\spring\serviceImpl\Validation.class
 com\spring\dao\AdminDao.class
 com\spring\daoImpl\AddressDaoImpl.class
 com\spring\controller\DemoController.class
 com\spring\daoImpl\UserDaoImpl.class
+com\spring\filter\AdminFilter.class
 com\spring\service\AdminService.class
 com\spring\serviceImpl\AdminImpl.class

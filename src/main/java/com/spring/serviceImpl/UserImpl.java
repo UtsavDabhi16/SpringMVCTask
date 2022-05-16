@@ -89,7 +89,7 @@ public class UserImpl implements UserService {
 
 	}
 
-	public int updateUser(UserBean user) {
+	public int updateUser(UserBean user) throws CloneNotSupportedException {
 
 		List<AddressBean> newAddress = user.getAddress();
 

@@ -13,7 +13,7 @@ public interface UserService {
 
 	List<AddressBean> getUserAddress(UserBean ubean) throws SQLException;
 
-	int updateUser(UserBean user);
+	int updateUser(UserBean user) throws CloneNotSupportedException;
 
 	List<UserBean> showUser();
 

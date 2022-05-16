@@ -76,7 +76,7 @@
 	</bean>
 
 	<bean name="userDaoImpl" class="com.spring.daoImpl.UserDaoImpl" autowire="byType">
-		<property name="hibernatetamplate" ref="template"></property>
+		<property name="hibernateTemplate" ref="template"></property>
 	</bean>
 
 	<bean

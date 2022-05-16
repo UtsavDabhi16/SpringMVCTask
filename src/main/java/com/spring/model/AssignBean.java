@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "AssignRole")
-public class AssignBean implements Serializable{
+public class AssignBean implements Serializable,Cloneable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -35,13 +35,17 @@ public class AssignBean implements Serializable{
 	@ManyToOne
 	private UserBean user;
 	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return (AssignBean)super.clone();
+	}
 	
-	public UserBean getUser() {
-		return this.user;
+	public UserBean getUser() throws CloneNotSupportedException {
+		return (UserBean) this.user.clone();
 	}
 
-	public void setUser(UserBean user) {
-		this.user = user;
+	public void setUser(UserBean user) throws CloneNotSupportedException {
+		this.user = (UserBean) user.clone();
 	}
 
 	public AssignBean() {
@@ -56,10 +60,10 @@ public class AssignBean implements Serializable{
 		this.id = id;
 	}
 	
-	public AssignBean(int id, UserBean user) {
+	public AssignBean(int id, UserBean user) throws CloneNotSupportedException {
 		super();
 		this.id = id;
-		this.user = user;
+		this.user = (UserBean) user.clone();
 	}
 
 	

@@ -13,7 +13,7 @@ import com.spring.model.UserBean;
 public class UserDaoImpl extends GenericDaoImpl<UserBean> implements UserDao {
 
 	@Autowired
-	HibernateTemplate hibernatetamplate;
+	private HibernateTemplate hibernateTemplate;
 
 	@Autowired
 	UserBean uBean;
@@ -24,25 +24,18 @@ public class UserDaoImpl extends GenericDaoImpl<UserBean> implements UserDao {
 		String query = "from UserBean where Email=?0";
 		Object quertParam = email;
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<UserBean> userData = (List<UserBean>) hibernatetamplate.find(query, quertParam);
+		List<UserBean> userData = (List<UserBean>) hibernateTemplate.find(query, quertParam);
 		System.out.println("inside :" + userData.size());
 		return userData.get(0);
 	}
 
-	public HibernateTemplate getHibernatetamplate() {
-		return hibernatetamplate;
-	}
-
-	public void setHibernatetamplate(HibernateTemplate hibernatetamplate) {
-		this.hibernatetamplate = hibernatetamplate;
-	}
 
 	@Override
 	public List<AddressBean> getCurrentUserAddress(UserBean ubean) {
 		String query = "from AddressBean where user_Userid=?0";
 		Object quertParam = ubean.getUserid();
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<AddressBean> userAddressData = (List<AddressBean>) hibernatetamplate.find(query, quertParam);
+		List<AddressBean> userAddressData = (List<AddressBean>) hibernateTemplate.find(query, quertParam);
 		return userAddressData;
 	}
 
@@ -50,7 +43,7 @@ public class UserDaoImpl extends GenericDaoImpl<UserBean> implements UserDao {
 	public List<UserBean> getAllUser() {
 		String query = "from UserBean";
 		@SuppressWarnings({ "unchecked", "deprecation" })
-		List<UserBean> userData = (List<UserBean>) hibernatetamplate.find(query);
+		List<UserBean> userData = (List<UserBean>) hibernateTemplate.find(query);
 		return userData;
 	}
 
